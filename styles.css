@@ -321,7 +321,7 @@ main {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: var(--space-20) var(--content-padding) var(--space-16);
+    padding: var(--space-20) var(--content-padding) var(--space-8);
     background-color: var(--bg-primary);
 }
 
@@ -363,6 +363,51 @@ main {
     flex-wrap: wrap;
     gap: var(--space-3);
     justify-content: center;
+}
+
+/* ===== Supported By ===== */
+.supported-by {
+    margin-top: var(--space-8);
+    text-align: center;
+    max-width: var(--content-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.supported-by__label {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-6);
+}
+
+.supported-by__logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-12);
+    flex-wrap: nowrap;
+}
+
+.supported-by__logos .logo--circular {
+    height: clamp(52px, 8vw, 90px);
+}
+
+.supported-by__logos img {
+    height: clamp(40px, 6vw, 72px);
+    max-width: clamp(130px, 18vw, 240px);
+    width: auto;
+    object-fit: contain;
+}
+
+[data-theme="dark"] .supported-by__logos .logo--invert {
+    filter: invert(1);
+}
+
+[data-theme="dark"] .supported-by__logos .logo--white {
+    filter: brightness(0) invert(1);
 }
 
 /* ===== Buttons ===== */
@@ -910,6 +955,19 @@ main {
 
     .btn {
         width: 100%;
+    }
+
+    .supported-by__logos {
+        flex-wrap: wrap;
+        gap: var(--space-4);
+    }
+
+    .supported-by__logos img {
+        height: 28px;
+    }
+
+    .supported-by__logos .logo--circular {
+        height: 40px;
     }
 }
 
