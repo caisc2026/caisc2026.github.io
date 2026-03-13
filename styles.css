@@ -958,16 +958,22 @@ main {
     }
 
     .supported-by__logos {
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
         gap: var(--space-4);
     }
 
     .supported-by__logos img {
-        height: 28px;
+        height: 32px;
+        max-width: 110px;
     }
 
     .supported-by__logos .logo--circular {
-        height: 40px;
+        height: 44px;
+        max-width: none;
     }
 }
 
