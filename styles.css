@@ -958,12 +958,11 @@ main {
     }
 
     .supported-by__logos {
-        display: grid;
-        grid-template-columns: repeat(3, auto);
+        display: flex;
+        flex-wrap: wrap;
         justify-content: center;
-        justify-items: center;
         align-items: center;
-        gap: var(--space-4);
+        gap: var(--space-4) var(--space-6);
     }
 
     .supported-by__logos img {
