@@ -10,3 +10,6 @@ cfp.md
 
 # Python virtual environment
 venv/
+
+# Submission templates
+submission_template/
