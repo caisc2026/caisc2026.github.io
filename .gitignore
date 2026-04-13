@@ -13,3 +13,9 @@ venv/
 
 # Submission templates
 submission_template/
+
+# Social media posts (generated)
+social_posts/
+
+# Program committee pictures
+assets/program_committee_pictures/
