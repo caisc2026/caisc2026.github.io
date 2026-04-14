@@ -1,0 +1,85 @@
+{
+  "id": "matrix-multiplication-tensor-rank",
+  "title": "Matrix Multiplication Tensor Rank",
+  "domain": "Math - Algebraic Complexity",
+
+  "attribution": {
+    "authors": ["Siddhartha Mahajan (Lossfunk)"],
+    "reviewers": ["Dr. Ankan Pal (BITS Pilani)"]
+  },
+
+  "origin": "Strassen (1969) showed that two 2x2 matrices can be multiplied using 7 scalar multiplications instead of 8, the first proof that matrix multiplication is sub-cubic. For 3x3, the record of 23 multiplications has stood since 1976 (lower bound: 19). DeepMind's AlphaTensor (2022) found improvements over finite fields but matched or fell short over the integers for these sizes. Rectangular cases like R(2,3,4) and R(3,3,6) are less studied and may be more tractable.",
+
+  "instance": "Find a bilinear algorithm that multiplies two matrices of a given size using fewer scalar multiplications than the current record. For example, the naive way to multiply two 3x3 matrices uses 27 multiplications, but it can be done in 23. For a 5x5 matrix, the naive method uses 125 but the record is 93. Choose any size from the records table (square or rectangular). Submit the tensor decomposition (U, V, W factor matrices) that defines your algorithm. All coefficients must be integers or rational numbers. Modular arithmetic will not be accepted.",
+
+  "scoring": {
+    "summary": "Each submission is scored on how many multiplications it saves relative to the naive algorithm.",
+    "metrics": [
+      {
+        "name": "Multiplication count",
+        "description": "The number of scalar multiplications in your algorithm for the chosen size (n, m, p). Lower is better."
+      },
+      {
+        "name": "Savings ratio",
+        "description": "savings = (naive - submitted) / naive. Strassen's 2x2 algorithm scores 1/8 = 12.5% savings. The 3x3 record scores 4/27 = 14.8%."
+      },
+      {
+        "name": "New record",
+        "description": "If your multiplication count is strictly less than the current best known for that size, you have a new record."
+      }
+    ],
+    "note": "Different valid decompositions at the same multiplication count are also interesting (distinct algorithms), though they score equally."
+  },
+
+  "submissionExample": "{\n  \"n\": 3, \"m\": 3, \"p\": 6,\n  \"num_multiplications\": 39,\n  \"U\": [[[...], ...], ...],\n  \"V\": [[[...], ...], ...],\n  \"W\": [[[...], ...], ...]\n}",
+
+  "verification": "We run your algorithm on 100 random integer matrix pairs of the declared size (n x m times m x p). We check exact equality with the true product A * B for every pair. All coefficients must be rational. If any test fails, the submission is rejected. This verification is heuristic: correctness is tested on random inputs rather than proven symbolically. A submission passing all tests is overwhelmingly likely to be correct.",
+
+  "bounds": [
+    { "label": "R(2,2,2)", "name": "Optimal: 7", "formula": "Winograd (1971) proved 6 is impossible." },
+    { "label": "R(3,3,3)", "name": "Best 23, lower bound 19", "formula": "Laderman (1976). Gap open for 50 years." },
+    { "label": "R(4,4,4)", "name": "Best 48, lower bound 48", "formula": "Novikov et al. (AlphaEvolve, 2025). Matches lower bound." },
+    { "label": "R(5,5,5)", "name": "Best 93, lower bound ~60", "formula": "Moosbauer and Poole (2025). Largest gap." },
+    { "label": "Rectangular", "name": "Less studied", "formula": "Lower bounds weaker. R(2,3,4), R(3,3,6), R(4,4,5) all have room for improvement." },
+    { "label": "Exponent", "name": "omega < 2.371339", "formula": "Alman, Duan, Williams, Xu, Xu, & Zhou (2025). Lower bound 2. Whether omega = 2 is open." }
+  ],
+
+  "leaderboard": {
+    "note": "Records over integers/rationals. Finite-field results (e.g. AlphaTensor over F2) are excluded.",
+    "rows": [
+      { "n": "2,2,2", "naive": 8,   "best": 7,   "pct": 87.5, "note": "Optimal (Strassen, 1969)" },
+      { "n": "2,2,3", "naive": 12,  "best": 11,  "pct": 91.7, "note": "Hopcroft & Kerr (1971)" },
+      { "n": "2,3,3", "naive": 18,  "best": 15,  "pct": 83.3, "note": "Smirnov (2013)" },
+      { "n": "2,3,4", "naive": 24,  "best": 20,  "pct": 83.3, "note": "Smirnov (2013)" },
+      { "n": "2,4,5", "naive": 40,  "best": 32,  "pct": 80.0, "note": "" },
+      { "n": "3,3,3", "naive": 27,  "best": 23,  "pct": 85.2, "note": "Laderman (1976). Lower bound 19." },
+      { "n": "3,3,4", "naive": 36,  "best": 29,  "pct": 80.6, "note": "Smirnov (2013)" },
+      { "n": "3,3,6", "naive": 54,  "best": 40,  "pct": 74.1, "note": "Less studied, potentially improvable" },
+      { "n": "4,4,4", "naive": 64,  "best": 48,  "pct": 75.0, "note": "Matches lower bound of 48 (Novikov et al., AlphaEvolve, 2025)" },
+      { "n": "4,4,5", "naive": 80,  "best": 61,  "pct": 76.3, "note": "" },
+      { "n": "5,5,5", "naive": 125, "best": 93,  "pct": 74.4, "note": "Moosbauer and Poole (2025). Lower bound ~60." }
+    ]
+  },
+
+  "suggestedApproach": [
+    { "title": "Implement Strassen", "body": "The 2x2 case with 7 multiplications. Understand how 7 products reconstruct all 4 output entries. This is the template for all tensor-rank algorithms." },
+    { "title": "Pick a target", "body": "R(5,5,5) has the largest gap for square cases. Rectangular cases like R(3,3,6) and R(4,4,5) are less studied and may yield to fresh approaches." },
+    { "title": "Tensor decomposition", "body": "The multiplication tensor for (n,m,p) has shape nm x mp x np. Decompose it into r rank-1 terms. Each term corresponds to one scalar multiplication in the algorithm." },
+    { "title": "Search methods", "body": "Gradient descent on decomposition error with random restarts. AlphaTensor used MCTS + RL. Simpler evolutionary and simulated annealing approaches also work." }
+  ],
+
+  "agentPrompt": "I want you to find a bilinear algorithm for multiplying a 3x3 matrix by a 3x6 matrix using fewer than 40 scalar multiplications over the integers. Represent the algorithm as a tensor decomposition: three lists U, V, W of length r (the number of multiplications). For each t in 1..r, the product is C = sum_t <U_t, A> <V_t, B> W_t, where <U_t, A> denotes the Frobenius inner product of U_t with A, and similarly for V_t with B. Verify correctness by testing on random integer matrices. Output U, V, W as JSON arrays.",
+
+  "references": [
+    { "text": "Strassen, V. (1969). Gaussian elimination is not optimal. Numerische Mathematik, 13(4), 354-356.", "url": "https://doi.org/10.1007/BF02165411" },
+    { "text": "Hopcroft, J. E., & Kerr, L. R. (1971). On minimizing the number of multiplications necessary for matrix multiplication. SIAM Journal on Applied Mathematics, 20(1), 30-36.", "url": "https://doi.org/10.1137/0120004" },
+    { "text": "Laderman, J. D. (1976). A noncommutative algorithm for multiplying 3x3 matrices using 23 multiplications. Bulletin of the AMS, 82(1), 126-128.", "url": "https://doi.org/10.1090/S0002-9904-1976-13988-2" },
+    { "text": "Smirnov, A. V. (2013). The bilinear complexity and practical algorithms for matrix multiplication. Computational Mathematics and Mathematical Physics, 53(12), 1781-1795.", "url": "https://doi.org/10.1134/S0965542513120129" },
+    { "text": "Bl\u00e4ser, M. (2013). Fast matrix multiplication. Theory of Computing, Graduate Surveys 5.", "url": "https://theoryofcomputing.org/articles/gs005/" },
+    { "text": "Fawzi, A., Balog, M., Huang, A., et al. (2022). Discovering faster matrix multiplication algorithms with reinforcement learning. Nature, 610, 47-53.", "url": "https://doi.org/10.1038/s41586-022-05172-4" },
+    { "text": "Alman, J., Duan, R., Williams, V. V., Xu, Y., Xu, Z., & Zhou, R. (2025). More asymmetry yields faster matrix multiplication. Proceedings of SODA 2025, 2005-2039.", "url": "https://doi.org/10.1137/1.9781611978322.63" },
+    { "text": "Novikov, A., Vu, N., Eisenberger, M., et al. (2025). AlphaEvolve: A coding agent for scientific and algorithmic discovery. arXiv preprint 2506.13131.", "url": "https://arxiv.org/abs/2506.13131" },
+    { "text": "Moosbauer, J., & Poole, M. (2025). Flip graphs with symmetry and new matrix multiplication schemes. Proceedings of ISSAC 2025, 233-239.", "url": "https://doi.org/10.1145/3747199.3747566" },
+    { "text": "Winograd, S. (1971). On multiplication of 2 x 2 matrices. Linear Algebra and its Applications, 4(4), 381-388.", "url": "https://doi.org/10.1016/0024-3795(71)90009-7" }
+  ]
+}

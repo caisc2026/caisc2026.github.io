@@ -1,0 +1,62 @@
+{
+  "id": "connected-still-life",
+  "title": "Connected Still Life",
+  "domain": "Math - Discrete Math / Cellular Automata",
+
+  "attribution": {
+    "authors": ["Siddhartha Mahajan (Lossfunk)"],
+    "reviewers": ["Dr. Ankan Pal (BITS Pilani)"]
+  },
+
+  "origin": "The maximum density of an unconstrained still life in Conway's Game of Life approaches 1/2. Requiring connectivity drops this because you cannot freely tile isolated stable pieces. For small n, good solutions are known. For n >= 16, the best-known patterns come from ad hoc searches and may be suboptimal. The density gap between connected and unconstrained still lifes widens as n grows, making larger boxes the more interesting targets. Elkies (1998) proved theoretical density bounds.",
+
+  "instance": "Conway's Game of Life is played on a grid of cells, where each cell is either alive (1) or dead (0). Every cell has 8 neighbors: the cells directly above, below, left, right, and on the four diagonals. At each time step, the grid updates simultaneously according to two rules: (1) a live cell survives if it has exactly 2 or 3 live neighbors, otherwise it dies; (2) a dead cell becomes alive if it has exactly 3 live neighbors, otherwise it stays dead. A still life is a pattern that does not change after a time step: every live cell has 2 or 3 live neighbors (so none die) and no dead cell has exactly 3 live neighbors (so none are born). A connected still life adds one more requirement: all live cells must form a single connected group, where connectivity is through the same 8 directions (horizontal, vertical, and diagonal). Your challenge: choose a box size n and find a connected still life fitting inside an n x n grid that has as many live cells as possible.",
+
+  "scoring": {
+    "summary": "Each submission is scored on the density of live cells achieved, relative to the theoretical ceiling.",
+    "metrics": [
+      {
+        "name": "Live cell count",
+        "description": "The number of live cells in your pattern. Higher is better."
+      },
+      {
+        "name": "Density",
+        "description": "live_cells / n^2, expressed as a percentage. The theoretical ceiling is roughly 50% (Elkies, 1998). The connected constraint reduces achievable density further."
+      },
+      {
+        "name": "New record",
+        "description": "If your live cell count strictly exceeds the current best known for that n, you have a new record and are credited on the leaderboard."
+      }
+    ],
+    "note": "All valid connected still lifes are accepted and scored, even if they do not beat the record. Submissions for larger n (where the gap to the theoretical ceiling is widest) are especially valuable."
+  },
+
+  "submissionExample": "{\n  \"n\": 20,\n  \"claimed_cells\": 149,\n  \"grid\": [\n    [0, 1, 1, 0, ...],\n    [1, 0, 0, 1, ...],\n    ...\n  ]\n}",
+
+  "verification": "We check: (1) the grid is n x n with entries 0 or 1, (2) every live cell has exactly 2 or 3 live neighbors (stability), (3) no dead cell in the box or its one-cell exterior ring has exactly 3 live neighbors (no births), (4) all live cells are 8-connected (BFS). The live cell count must match claimed_cells. O(n^2), runs in milliseconds.",
+
+  "bounds": [
+    { "label": "Stability", "name": "Live cells: 2 or 3 neighbors", "formula": "Each live cell must have exactly 2 or 3 live neighbors to survive" },
+    { "label": "Stability", "name": "Dead cells: not exactly 3", "formula": "No dead cell in the box or one-cell exterior ring may have exactly 3 live neighbors" },
+    { "label": "Connectivity", "name": "8-connected", "formula": "All live cells reachable from each other via edge or corner adjacency" },
+    { "label": "Density", "name": "Upper bound ~1/2", "formula": "Elkies (1998). The connected constraint further reduces achievable density." }
+  ],
+
+  "suggestedApproach": [
+    { "title": "Start from known still lifes", "body": "Beehives, blocks, boats, loaves. Combine them into connected patterns. The hard part is making valid joins: most naive connections violate stability." },
+    { "title": "Simulated annealing", "body": "Score = live cells minus penalty for stability violations. Flip cells to improve. When penalty reaches zero, check if it beats the record." },
+    { "title": "SAT / MaxSAT", "body": "Encode stability and connectivity as boolean constraints. Maximize live cell count. Works well for n <= 20." },
+    { "title": "Target large n", "body": "Larger board sizes tend to have more room for improvement relative to the theoretical density ceiling." }
+  ],
+
+  "agentPrompt": "I want you to find a connected still life in Conway's Game of Life that fits inside a given n x n bounding box and maximizes the number of live cells. A still life means: every live cell has exactly 2 or 3 live neighbors (so it survives), and no dead cell has exactly 3 live neighbors (so none are born). Connected means all live cells are reachable from each other via 8-adjacency (including diagonals). Use a combination of SAT encoding and simulated annealing. Output the grid as a JSON array of arrays (0s and 1s), and report the live cell count.",
+
+  "references": [
+    { "text": "LifeWiki contributors. Still life. LifeWiki.", "url": "https://conwaylife.com/wiki/Still_life" },
+    { "text": "LifeWiki contributors. Density. LifeWiki.", "url": "https://conwaylife.com/wiki/Density" },
+    { "text": "Catagolue. Crowdsourced census of Game of Life objects.", "url": "https://catagolue.hatsya.com" },
+    { "text": "Elkies, N. D. (1998). The still-life density problem and its generalizations. In Voronoi's Impact on Modern Science, Book I (Vol. 21 of the Proc. Inst. Math. Nat. Acad. Sci. Ukraine).", "url": "https://arxiv.org/abs/math/9905194" },
+    { "text": "Chu, G., & Stuckey, P. J. (2012). A complete solution to the maximum density still life problem. Artificial Intelligence, 184-185, 1-16.", "url": "https://people.eng.unimelb.edu.au/pstuckey/papers/still-life.pdf" },
+    { "text": "ASP Competition 2013. Connected Maximum-density Still Life.", "url": "http://www.mat.unical.it/aspcomp2013/ConnectedMaximumDensityStillLife" }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "attribution": {
+    "organization": "Lossfunk x BITS Pilani",
+    "programCommittee": "Reviewed by the CAISc 2026 Program Committee"
+  },
+  "problems": [
+    {
+      "id": "hadamard-maximal-determinant",
+      "file": "hadamard-maximal-determinant.json",
+      "title": "Hadamard Maximal Determinant",
+      "domain": "Math - Linear Algebra",
+      "subtitle": "Choose an n, build an n x n matrix of +1s and -1s, and try to beat the current determinant record."
+    },
+    {
+      "id": "conways-99-graph",
+      "file": "conways-99-graph.json",
+      "title": "Conway's 99-Graph",
+      "domain": "Math - Graph Theory",
+      "subtitle": "Build a graph on 99 vertices satisfying srg(99, 14, 1, 2). $1,000 prize, unsolved since 1971."
+    },
+    {
+      "id": "matrix-multiplication-tensor-rank",
+      "file": "matrix-multiplication-tensor-rank.json",
+      "title": "Matrix Multiplication Tensor Rank",
+      "domain": "Math - Algebraic Complexity",
+      "subtitle": "Find a way to multiply matrices using fewer scalar multiplications than the current record."
+    },
+    {
+      "id": "connected-still-life",
+      "file": "connected-still-life.json",
+      "title": "Connected Still Life",
+      "domain": "Math - Discrete Math / Cellular Automata",
+      "subtitle": "Maximize live cells in a stable, connected Game of Life pattern inside an n x n box."
+    },
+    {
+      "id": "hp-protein-folding",
+      "file": "hp-protein-folding.json",
+      "title": "HP Protein Folding",
+      "domain": "Computational Biology - Protein Structure",
+      "subtitle": "Fold an HP chain on a 2D lattice to maximize hydrophobic contacts. NP-hard with open records since the 1990s."
+    }
+  ]
+}

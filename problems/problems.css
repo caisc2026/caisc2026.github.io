@@ -1,0 +1,1008 @@
+/* ================================================================
+   problems.css - Verifiable Problems section styles
+   Loaded alongside the site's global styles.css
+   ================================================================ */
+
+/* ===== Hero ===== */
+.problems-hero {
+    padding: calc(var(--nav-height) + var(--space-16)) var(--content-padding) var(--space-12);
+    max-width: var(--content-width);
+    margin: 0 auto;
+}
+
+.problems-hero .eyebrow {
+    text-align: left;
+    margin-bottom: var(--space-3);
+}
+
+.problems-hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: var(--space-4);
+    line-height: 1.15;
+}
+
+.problems-hero__subtitle {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    max-width: 620px;
+    margin-bottom: var(--space-6);
+    line-height: 1.6;
+}
+
+.badge-row {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    background-color: var(--bg-secondary);
+}
+
+.badge svg {
+    width: 13px;
+    height: 13px;
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+
+/* ===== State views ===== */
+.loading-state {
+    text-align: center;
+    padding: var(--space-16);
+    color: var(--text-tertiary);
+    font-size: var(--text-sm);
+}
+
+.error-state {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: var(--space-6) var(--content-padding);
+    background-color: var(--bg-secondary);
+    border-left: 4px solid #dc2626;
+    border-radius: 0 8px 8px 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* ===== Problem index (card list) ===== */
+.problems-index {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding) var(--space-16);
+}
+
+.problem-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: var(--space-4);
+}
+
+.problem-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: var(--space-6) var(--space-8);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.problem-card-link:hover .problem-card {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow);
+}
+
+.problem-card__left h3 {
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-xl);
+}
+
+.problem-card__left p {
+    margin: var(--space-2) 0 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.problem-card__meta {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: var(--space-2);
+}
+
+.problem-card__right {
+    flex-shrink: 0;
+    color: var(--text-tertiary);
+}
+
+.problem-card__right svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ===== Tags ===== */
+.tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.tag--domain {
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+}
+
+.tag--open {
+    background-color: var(--accent-light);
+    color: var(--accent);
+}
+
+[data-theme="dark"] .tag--open {
+    color: var(--accent-hover);
+}
+
+.tag--star {
+    background-color: var(--accent);
+    color: #fff;
+    font-size: 0.72rem;
+    padding: 2px 7px;
+}
+
+[data-theme="dark"] .tag--star {
+    color: #000;
+}
+
+/* ===== Problem detail view ===== */
+.problem-detail {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: calc(var(--nav-height) + var(--space-8)) var(--content-padding) var(--space-16);
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-bottom: var(--space-8);
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: var(--text-primary);
+}
+
+.back-link svg {
+    width: 16px;
+    height: 16px;
+}
+
+.problem-header {
+    margin-bottom: var(--space-6);
+}
+
+.problem-header h2 {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: var(--text-3xl);
+    line-height: 1.2;
+}
+
+/* ===== Attribution block ===== */
+.attribution-block {
+    margin-bottom: var(--space-6);
+    padding: var(--space-3) var(--space-6);
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.attribution-row {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding: var(--space-1) 0;
+}
+
+.attribution-label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    min-width: 100px;
+    flex-shrink: 0;
+}
+
+.attribution-names {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+.problem-description {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-6);
+    line-height: 1.7;
+    max-width: 760px;
+}
+
+.context-box {
+    background-color: var(--bg-secondary);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: var(--space-4) var(--space-6);
+    margin-bottom: var(--space-8);
+}
+
+.context-box p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.75;
+}
+
+/* ===== Leaderboard ===== */
+.leaderboard-section {
+    margin-bottom: var(--space-12);
+}
+
+.leaderboard-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.leaderboard-header h3 {
+    margin: 0;
+    font-size: var(--text-xl);
+}
+
+.leaderboard-note {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    font-style: italic;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+table.leaderboard {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+table.leaderboard thead {
+    background-color: var(--bg-secondary);
+}
+
+table.leaderboard th {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+    border-bottom: 1px solid var(--border);
+}
+
+table.leaderboard td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+table.leaderboard tbody tr:last-child td {
+    border-bottom: none;
+}
+
+table.leaderboard tbody tr:hover {
+    background-color: var(--bg-secondary);
+}
+
+/* (row-highlight removed; notes now shown as inline text) */
+
+/* column widths + fonts */
+.td-n {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-primary);
+    min-width: 70px;
+}
+
+.n-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    white-space: nowrap;
+}
+
+.td-mod {
+    color: var(--text-tertiary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    width: 70px;
+}
+
+.td-best {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.td-pct {
+    width: 190px;
+}
+
+.pct-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pct-bar-track {
+    flex: 1;
+    height: 6px;
+    background-color: var(--bg-tertiary);
+    border-radius: 3px;
+    overflow: hidden;
+    min-width: 60px;
+}
+
+.pct-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background-color: var(--accent);
+}
+
+.pct-value {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    min-width: 44px;
+    text-align: right;
+}
+
+.pct-unknown {
+    font-size: 0.82rem;
+    color: var(--text-tertiary);
+}
+
+.td-status {
+    width: 90px;
+}
+
+.status-open {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: var(--accent-light);
+    color: var(--accent);
+    white-space: nowrap;
+}
+
+[data-theme="dark"] .status-open {
+    color: var(--accent-hover);
+}
+
+.status-solved {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    flex-shrink: 0;
+}
+
+.leaderboard-footer-note {
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+}
+
+.section-block h3 {
+    margin-top: 0;
+    margin-bottom: var(--space-4);
+    font-size: var(--text-lg);
+}
+
+/* ===== Code block ===== */
+.code-block {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: var(--space-4) var(--space-5);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    overflow-x: auto;
+    white-space: pre;
+    margin-bottom: var(--space-4);
+}
+
+.tok-key  { color: var(--accent); }
+.tok-num  { color: #7c3aed; }
+.tok-punc { color: var(--text-tertiary); }
+.tok-ellip { color: var(--text-tertiary); font-style: italic; }
+
+[data-theme="dark"] .tok-num { color: #a78bfa; }
+
+/* ===== Numbered steps ===== */
+.steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: steps;
+}
+
+.steps li {
+    counter-increment: steps;
+    display: flex;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+    align-items: flex-start;
+}
+
+.steps li::before {
+    content: counter(steps);
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+}
+
+[data-theme="dark"] .steps li::before {
+    color: var(--accent-hover);
+}
+
+.steps li p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.steps li strong {
+    color: var(--text-primary);
+}
+
+/* ===== Accordion ===== */
+details.accordion {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: var(--space-4);
+}
+
+details.accordion summary {
+    padding: var(--space-4) var(--space-6);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-primary);
+    user-select: none;
+}
+
+details.accordion summary::-webkit-details-marker { display: none; }
+
+details.accordion summary::after {
+    content: "+";
+    font-size: 1.2rem;
+    color: var(--text-tertiary);
+}
+
+details.accordion[open] summary::after {
+    content: "−";
+}
+
+details.accordion .accordion-body {
+    padding: var(--space-4) var(--space-6) var(--space-5);
+    border-top: 1px solid var(--border);
+}
+
+/* bounds table inside accordion */
+.bounds-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-4) 0 0;
+}
+
+.bounds-list li {
+    padding: var(--space-3) var(--space-2);
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: var(--space-4);
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.bounds-list li:last-child {
+    border-bottom: none;
+}
+
+.bounds-list .mod-key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.bounds-list .bound-detail {
+    color: var(--text-secondary);
+}
+
+.bound-name {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* references list inside accordion */
+.refs-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-4) 0 0;
+}
+
+.refs-list li {
+    padding: var(--space-3) var(--space-2);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.refs-list li:last-child {
+    border-bottom: none;
+}
+
+/* ===== Verify note ===== */
+.verify-note {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    padding: var(--space-4) var(--space-5);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-4);
+}
+
+.verify-note svg {
+    flex-shrink: 0;
+    color: var(--accent);
+    margin-top: 2px;
+}
+
+/* ===== Warmup block ===== */
+.warmup-block {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: var(--space-5) var(--space-6);
+    margin-bottom: var(--space-8);
+}
+
+.warmup-block h3 {
+    margin-top: 0;
+    margin-bottom: var(--space-3);
+    font-size: var(--text-lg);
+}
+
+/* ===== Game of Life Widget ===== */
+.gol-widget {
+    text-align: center;
+}
+
+.gol-widget h3 {
+    text-align: left;
+}
+
+.gol-widget p {
+    text-align: left;
+}
+
+.gol-widget canvas {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: crosshair;
+    display: block;
+    margin: 0 auto var(--space-4);
+}
+
+.gol-controls {
+    display: flex;
+    gap: var(--space-3);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.gol-btn {
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    background-color: var(--bg-secondary);
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+.gol-btn:hover {
+    background-color: var(--bg-tertiary);
+}
+
+.gol-btn--active {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.gol-status {
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+}
+
+/* ===== Section divider (legacy, not used in card layout) ===== */
+.section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: var(--space-10) 0;
+}
+
+/* Remove margin from last child inside section cards */
+.section-card > *:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== Active nav link ===== */
+.header-link--active {
+    color: var(--text-primary) !important;
+    font-weight: 600;
+}
+
+/* ===== Submit CTA ===== */
+.btn--disabled {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    border: 1px solid var(--border);
+    color: var(--text-tertiary);
+    background-color: var(--bg-secondary);
+    cursor: not-allowed;
+    opacity: 0.7;
+    white-space: nowrap;
+}
+
+.btn--disabled svg {
+    margin-right: 6px;
+    flex-shrink: 0;
+}
+
+/* ===== Section cards ===== */
+.section-card {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: var(--space-8);
+    margin-bottom: var(--space-6);
+}
+
+.section-card__title {
+    font-size: var(--text-2xl);
+    margin-top: 0;
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 2px solid var(--accent);
+    color: var(--text-primary);
+}
+
+/* Sub-headings inside cards */
+.section-card .section-block h3,
+.section-card .scoring-block h3,
+.section-card .references-section h3,
+.section-card .cite-block h3,
+.section-card .leaderboard-header h3 {
+    font-size: var(--text-lg);
+    color: var(--text-primary);
+    margin-top: 0;
+}
+
+.section-card .context-box h3 {
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    margin-top: 0;
+}
+
+/* ===== Bounds explanation ===== */
+.bounds-explanation {
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    font-style: italic;
+    line-height: 1.6;
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--border);
+}
+
+/* ===== Video block ===== */
+.video-block {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    max-width: 560px;
+}
+
+.video-block video {
+    width: 100%;
+    display: block;
+    background: #000;
+}
+
+/* ===== Submit CTA inside section ===== */
+.submit-cta-section {
+    margin-top: var(--space-6);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--border);
+}
+
+/* ===== Row notes in leaderboard ===== */
+.row-note {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+    font-style: italic;
+    line-height: 1.3;
+    margin-top: 2px;
+}
+
+/* ===== Section headings (legacy) ===== */
+.section-heading {
+    font-size: var(--text-base);
+    margin-top: 0;
+    margin-bottom: var(--space-3);
+    color: var(--text-primary);
+}
+
+/* ===== Scoring block ===== */
+.scoring-block {
+    margin-bottom: var(--space-8);
+}
+
+.scoring-metrics {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-3);
+}
+
+.scoring-metrics li {
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.scoring-metrics li:last-child {
+    border-bottom: none;
+}
+
+.scoring-metrics strong {
+    color: var(--text-primary);
+}
+
+.scoring-note {
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    font-style: italic;
+}
+
+/* ===== Copy agent button ===== */
+.copy-agent-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    background-color: var(--accent-light);
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.copy-agent-btn:hover {
+    background-color: var(--accent);
+    color: #fff;
+}
+
+.copy-agent-btn:active {
+    transform: scale(0.97);
+}
+
+/* ===== Show more button ===== */
+.show-more-btn {
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    background-color: var(--bg-secondary);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.show-more-btn:hover {
+    background-color: var(--bg-tertiary);
+}
+
+/* ===== References (numbered, flat) ===== */
+.references-section {
+    margin-bottom: var(--space-8);
+}
+
+.references-section h3 {
+    margin-top: 0;
+    margin-bottom: var(--space-4);
+    font-size: var(--text-lg);
+}
+
+.refs-list--numbered {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.refs-list--numbered li {
+    padding: var(--space-2) 0;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    border-bottom: none;
+}
+
+.refs-list--numbered a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.refs-list--numbered a:hover {
+    text-decoration: underline;
+}
+
+.ref-num {
+    font-weight: 600;
+    color: var(--text-tertiary);
+    font-size: 0.8rem;
+    margin-right: var(--space-2);
+}
+
+/* ===== Cite block ===== */
+.cite-block {
+    margin-bottom: var(--space-8);
+}
+
+.cite-block h3 {
+    margin-top: 0;
+    margin-bottom: var(--space-4);
+    font-size: var(--text-lg);
+}
+
+.cite-bibtex {
+    white-space: pre-wrap;
+    font-size: 0.8rem;
+    line-height: 1.7;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .problems-hero {
+        padding-top: calc(var(--nav-height) + var(--space-8));
+    }
+
+    .td-mod {
+        display: none;
+    }
+
+    .td-pct {
+        width: 130px;
+    }
+
+    .leaderboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .problem-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .problem-card__right {
+        display: none;
+    }
+
+    .bounds-list li {
+        grid-template-columns: 1fr;
+        gap: var(--space-1);
+    }
+
+    .section-card {
+        padding: var(--space-5) var(--space-4);
+    }
+
+    .section-card__title {
+        font-size: var(--text-xl);
+    }
+}
