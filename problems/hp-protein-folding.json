@@ -1,0 +1,91 @@
+{
+  "id": "hp-protein-folding",
+  "title": "HP Protein Folding",
+  "domain": "Computational Biology - Protein Structure",
+
+  "attribution": {
+    "authors": ["Siddhartha Mahajan (Lossfunk)"],
+    "reviewers": []
+  },
+
+  "origin": "In 1985, Ken Dill introduced the hydrophobic-collapse theory for protein folding. In 1989, Lau and Dill introduced the HP lattice model as a simplified H/P representation on a lattice. Proteins are reduced to chains of two residue types: H (hydrophobic, water-avoiding) and P (polar, water-loving). The chain must fold onto a lattice without crossing itself, and the goal is to maximize non-sequential H-H contacts, which models hydrophobic core formation. The optimization problem was shown hard in 1998 (NP-complete in the classic HP complexity results), and long benchmark instances still rely on best-known rather than proven-optimal values. Improving established best-known values would be a notable result.",
+
+  "instance": "You are given a benchmark HP sequence and its sequence_id. For submissions, accepted sequence IDs are S5-S10 (S1-S4 are proven-optimal reference rows in the leaderboard). Example target: S5 = PPHPPHHPPHHPPPPPHHHHHHHHHHPPPPPPHHPPHHPPHPPHHHHH (length 48). Each sequence is a string of H and P characters. Find a self-avoiding walk on the 2D square lattice (one lattice point per residue, consecutive residues on adjacent points, no two residues on the same point) that maximizes H-H contacts. A contact is a pair of H residues that are adjacent on the lattice but not consecutive in the sequence. Submit lattice coordinates for each residue.",
+
+  "scoring": {
+    "summary": "Each submission is scored by the number of H-H topological contacts in the fold. Higher is better. Beat the current record to claim a spot on the leaderboard.",
+    "metrics": [
+      {
+        "name": "H-H contacts",
+        "description": "The number of non-sequential H-H pairs that are lattice-adjacent. This is the primary score. Higher is better (lower energy)."
+      },
+      {
+        "name": "New record",
+        "description": "If your contact count strictly exceeds the current best known for that sequence, you have a new record."
+      },
+      {
+        "name": "Compactness (tiebreaker)",
+        "description": "For equal contact counts, the fold with smaller radius of gyration (tighter packing) ranks higher."
+      }
+    ],
+    "note": "S1-S4 have proven-optimal values and are listed as references. Submissions are accepted for S5-S10. S5-S10 are open best-known targets. Any valid self-avoiding fold for an accepted instance is scored."
+  },
+
+  "warmup": {
+    "title": "Warm-up: 6-residue all-H chain",
+    "body": "Fold the sequence HHHHHH on a 2D square lattice. Since every residue is H, any non-sequential lattice adjacency is a contact. One optimal fold forms a 2x3 snake: (0,0), (1,0), (1,1), (0,1), (0,2), (1,2). This achieves 2 H-H contacts: positions 0-3 (via (0,0)-(0,1) adjacency) and positions 2-5 (via (1,1)-(1,2) adjacency). Verify: check each pair (i,j) with |i-j| > 1, both H, Manhattan distance 1 between their coordinates. The maximum for HHHHHH on a 2D lattice is 2 contacts.",
+    "sequence": "HHHHHH",
+    "solution": [[0,0],[1,0],[1,1],[0,1],[0,2],[1,2]]
+  },
+
+  "submissionExample": "{\n  \"sequence_id\": \"S5\",\n  \"lattice\": \"2D\",\n  \"coords\": [\n    [0, 0], [1, 0], [1, 1], [0, 1], [0, 2],\n    ...\n  ]\n}",
+
+  "verification": "For each submission: (1) Check coords length matches sequence length, (2) Check all coordinates are unique (self-avoidance), (3) Check consecutive residues are lattice-adjacent (Manhattan distance = 1), (4) Count H-H contacts: pairs (i, j) where |i-j| > 1, both sequence[i] and sequence[j] are H, and coords are lattice-adjacent, (5) Compute radius of gyration squared (mean squared distance from centroid) as the compactness tiebreaker. Pure integer/float arithmetic, runs in microseconds.",
+
+  "bounds": [
+    { "label": "Complexity", "name": "NP-hard", "formula": "Proven NP-complete in 3D by Berger & Leighton (1998) and in 2D by Crescenzi et al. (1998). No polynomial-time algorithm is known or expected." },
+    { "label": "Search space", "name": "Exponential", "formula": "~mu^n self-avoiding walks (mu ≈ 2.638 for the 2D square lattice). For n=100: approximately 10^42 conformations." },
+    { "label": "Upper bound", "name": "Contacts <= H*(H-1)/2", "formula": "Each H residue has at most 4 lattice neighbors (2D) minus the 1-2 occupied by chain neighbors. The packing limit depends on H-density and chain topology." },
+    { "label": "Proven optima", "name": "Known for benchmark sequences up to length 36", "formula": "Exhaustive search and branch-and-bound have confirmed optimal values for the standard benchmark sequences S1-S4 (lengths 20-36). Beyond that, only heuristic best-known values exist." }
+  ],
+
+  "leaderboard": {
+    "note": "Standard benchmark sequences for 2D HP lattice folding. Sources include Unger & Moult (1993), Yue & Dill (1995), Thachuk et al. (2007), and Wust & Landau (2012). Rows S1-S4 are proven-optimal reference instances.",
+    "rows": [
+      { "id": "S1",  "length": 20,  "sequence": "HPHPPHHPHPPHPHHPPHPH",  "best": 9,  "optimal": true,  "note": "Proven optimal" },
+      { "id": "S2",  "length": 24,  "sequence": "HHPPHPPHPPHPPHPPHPPHPPHH",  "best": 9,  "optimal": true,  "note": "Proven optimal" },
+      { "id": "S3",  "length": 25,  "sequence": "PPHPPHHPPPPHHPPPPHHPPPPHH",  "best": 8,  "optimal": true,  "note": "Proven optimal" },
+      { "id": "S4",  "length": 36,  "sequence": "PPPHHPPHHPPPPPHHHHHHHPPHHPPPPHHPPHPP",  "best": 14,  "optimal": true,  "note": "Proven optimal" },
+      { "id": "S5",  "length": 48,  "sequence": "PPHPPHHPPHHPPPPPHHHHHHHHHHPPPPPPHHPPHHPPHPPHHHHH",  "best": 23,  "optimal": false,  "note": "Open; best known since ~2004" },
+      { "id": "S6",  "length": 50,  "sequence": "PPHPPHPHPHHHHPHPPPHPPPHPPPPHPPPHPPPHPHHHHPHPHPHPHH",  "best": 21,  "optimal": false,  "note": "Open; best known since ~2000" },
+      { "id": "S7",  "length": 60,  "sequence": "PPHHHPHHHHHHHHPPPHHHHHHHHHHPHPPPHHHHHHHHHHHHPPPPHHHHHHPHHPHP",  "best": 36,  "optimal": false,  "note": "Open; best known" },
+      { "id": "S8",  "length": 64,  "sequence": "HHHHHHHHHHHHPHPHPPHHPPHHPPHPPHHPPHHPPHPPHHPPHHPPHPHPHHHHHHHHHHHH",  "best": 42,  "optimal": false,  "note": "Open; largest well-studied sequence" },
+      { "id": "S9",  "length": 85,  "sequence": "HHHHPPPPHHHHHHHHHHHHPPPPPPHHHHHHHHHHHHPPPHHHHHHHHHHHHPPPHHHHHHHHHHHHPPPHPPHHPPHHPPHPH",  "best": 53,  "optimal": false,  "note": "Open; Wust & Landau (2012) found putative ground state" },
+      { "id": "S10", "length": 100, "sequence": "PPPHHPPHHHHPPHHHPHHPHHPHHHHPPPPPPPPHHHHHHPPHHHHHHPPPPPPPPPHPHHPHHHHHHHHHHHPPHHHPHHPHPPHPHHHPPPPPPHHH",  "best": 50,  "optimal": false,  "note": "Open; longest standard benchmark. Putative best-known value: 50 contacts (Wust & Landau, 2012)" }
+    ]
+  },
+
+  "suggestedApproach": [
+    { "title": "Verify the warm-up", "body": "Fold the 6-residue all-H chain on paper or in code. Verify the 2x3 snake achieves 2 contacts by checking all pairs (i,j) with |i-j|>1 for lattice adjacency. Then try the first benchmark sequence S1 (length 20) to build intuition for mixed H/P chains." },
+    { "title": "Pull moves for Monte Carlo", "body": "Standard single-residue moves get stuck in local minima. Use pull moves (Lesh et al., 2003): grab a residue and pull the chain to a new position while maintaining connectivity. This allows large conformational changes." },
+    { "title": "Simulated annealing with restarts", "body": "Energy = -(H-H contacts). Start hot (accept bad moves), cool slowly. Run many independent starts and keep the best. Most record-setting results used this approach. Focus on S9 (length 85) and S10 (length 100), where improvements would be most impactful." },
+    { "title": "Genetic algorithm", "body": "Encode folds as sequences of relative moves (L, R, S for left, right, straight). Crossover partial folds. Select for high contact count. Multi-population with migration often helps." },
+    { "title": "Reinforcement learning", "body": "Train an RL agent to place residues one at a time on the lattice, rewarding H-H contacts. The state space is manageable for lengths up to 100." }
+  ],
+
+  "agentPrompt": "I want you to find optimal or near-optimal folds for HP protein sequences on a 2D square lattice. Each sequence is a string of H (hydrophobic) and P (polar) characters. Place each residue on a unique point of the integer lattice such that consecutive residues are adjacent (Manhattan distance 1). Maximize H-H contacts: pairs of H residues that are lattice-adjacent but not sequence-adjacent. Start with sequence S5 (length 48): PPHPPHHPPHHPPPPPHHHHHHHHHHPPPPPPHHPPHHPPHPPHHHHH. The current record is 23 contacts. Use simulated annealing with pull moves: initialize a random self-avoiding walk, then repeatedly select a random residue and attempt to pull it to a new lattice position while maintaining chain connectivity. Accept moves that increase contacts, and occasionally accept worse moves (Metropolis criterion) to escape local minima. Cool the temperature slowly over millions of steps. Run multiple independent trials and report the best fold found as a JSON object with fields sequence_id, lattice, and coords.",
+
+  "references": [
+    { "text": "Dill, K. A. (1985). Theory for the folding and stability of globular proteins. Biochemistry, 24(6), 1501-1509.", "url": "https://doi.org/10.1021/bi00327a032" },
+    { "text": "Lau, K. F., & Dill, K. A. (1989). A lattice statistical mechanics model of the conformational and sequence spaces of proteins. Macromolecules, 22(10), 3986-3997.", "url": "https://doi.org/10.1021/ma00200a030" },
+    { "text": "Unger, R., & Moult, J. (1993). Genetic Algorithms for Protein Folding Simulations. Journal of Molecular Biology, 231(1), 75-81.", "url": "https://doi.org/10.1006/jmbi.1993.1258" },
+    { "text": "Yue, K., & Dill, K. A. (1995). Forces of Tertiary Structural Organization in Globular Proteins. PNAS, 92(1), 146-150.", "url": "https://doi.org/10.1073/pnas.92.1.146" },
+    { "text": "Berger, B., & Leighton, T. (1998). Protein Folding in the Hydrophobic-Hydrophilic (HP) Model is NP-Complete. Journal of Computational Biology, 5(1), 27-40.", "url": "https://doi.org/10.1089/cmb.1998.5.27" },
+    { "text": "Crescenzi, P., Goldman, D., Papadimitriou, C., Piccolboni, A., & Yannakakis, M. (1998). On the complexity of protein folding. Journal of Computational Biology, 5(3), 423-465.", "url": "https://doi.org/10.1089/cmb.1998.5.423" },
+    { "text": "Lesh, N., Mitzenmacher, M., & Whitesides, S. (2003). A complete and effective move set for simplified protein folding. Proceedings of the Seventh Annual International Conference on Research in Computational Molecular Biology (RECOMB), 188-195.", "url": "https://doi.org/10.1145/640075.640099" },
+    { "text": "Shatabda, S., Newton, M. A. H., Rashid, M. A., & Sattar, A. (2013). An efficient encoding for simplified protein structure prediction using genetic algorithms. 2013 IEEE Congress on Evolutionary Computation, 1217-1224.", "url": "https://doi.org/10.1109/CEC.2013.6557704" },
+    { "text": "Wust, T., & Landau, D. P. (2012). Optimized Wang-Landau sampling of lattice polymers: Ground state search and folding thermodynamics of HP model proteins. Journal of Chemical Physics, 137, 064903.", "url": "https://doi.org/10.1063/1.4742969" },
+    { "text": "Thachuk, C., Shmygelska, A., & Hoos, H. H. (2007). A replica exchange Monte Carlo algorithm for protein folding in the HP model. BMC Bioinformatics, 8, 342.", "url": "https://doi.org/10.1186/1471-2105-8-342" },
+    { "text": "Khandoker, S. A., Inack, E. M., & Hibat-Allah, M. (2025). Lattice protein folding with variational annealing. Machine Learning: Science and Technology, 6(3), 035023.", "url": "https://doi.org/10.1088/2632-2153/adf376" }
+  ]
+}
