@@ -4,8 +4,24 @@
   "domain": "Math - Algebraic Complexity",
 
   "attribution": {
-    "authors": ["Siddhartha Mahajan (Lossfunk)"],
-    "reviewers": ["Dr. Ankan Pal (BITS Pilani)"]
+    "authors": [
+      {
+        "name": "Siddhartha Mahajan",
+        "institution": "Lossfunk",
+        "photo": "../assets/steering_committee_pictures/siddhartha_m_pic.jpeg",
+        "linkedin": "https://www.linkedin.com/in/siddharthamahajan03/",
+        "scholar": "https://scholar.google.com/citations?user=G7iQK4sAAAAJ&hl=en"
+      }
+    ],
+    "reviewers": [
+      {
+        "name": "Dr. Ankan Pal",
+        "institution": "BITS Pilani",
+        "photo": "../assets/steering_committee_pictures/Ankan_Pal_BITS_Pilani.png.webp",
+        "linkedin": "https://www.linkedin.com/in/ankanpal21/",
+        "scholar": "https://scholar.google.com/citations?user=Xb7FSjUAAAAJ&hl=en"
+      }
+    ]
   },
 
   "origin": "Strassen (1969) showed that two 2x2 matrices can be multiplied using 7 scalar multiplications instead of 8, the first proof that matrix multiplication is sub-cubic. For 3x3, the record of 23 multiplications has stood since 1976 (lower bound: 19). DeepMind's AlphaTensor (2022) found improvements over finite fields but matched or fell short over the integers for these sizes. Rectangular cases like R(2,3,4) and R(3,3,6) are less studied and may be more tractable.",

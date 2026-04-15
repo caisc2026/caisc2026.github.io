@@ -18,8 +18,10 @@
     --space-2: 0.5rem;
     --space-3: 0.75rem;
     --space-4: 1rem;
+    --space-5: 1.25rem;
     --space-6: 1.5rem;
     --space-8: 2rem;
+    --space-10: 2.5rem;
     --space-12: 3rem;
     --space-16: 4rem;
     --space-20: 5rem;
@@ -451,6 +453,22 @@ main {
     box-shadow: 0 4px 12px var(--shadow);
 }
 
+.btn--pill {
+    padding: var(--space-1) var(--space-4);
+    font-size: 0.8rem;
+    background-color: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    box-shadow: none;
+}
+
+.btn--pill:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+    color: #ffffff;
+    box-shadow: none;
+}
+
 .btn--primary {
     background-color: var(--text-primary);
     color: var(--bg-primary);
@@ -858,6 +876,19 @@ main {
     padding-top: var(--space-6);
     color: var(--text-tertiary);
     font-size: var(--text-sm);
+}
+
+.footer__credit {
+    text-align: left;
+    color: var(--text-tertiary);
+    font-size: 0.72rem;
+    margin-top: var(--space-2);
+    opacity: 0.7;
+}
+
+.footer__credit a {
+    color: var(--accent);
+    text-decoration: underline;
 }
 
 /* ===== Responsive ===== */

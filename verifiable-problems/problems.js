@@ -264,30 +264,54 @@ function renderLeaderboard(lb, collapsed) {
 
 /* ---------- Section renderers ---------- */
 
+function renderPersonCard(person) {
+    if (typeof person === 'string') return `<span class="attribution-names">${esc(person)}</span>`;
+    let socialHtml = '';
+    if (person.linkedin || person.scholar) {
+        socialHtml = '<div class="attribution-card__social">';
+        if (person.linkedin) socialHtml += `<a href="${esc(person.linkedin)}" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>`;
+        if (person.scholar) socialHtml += `<a href="${esc(person.scholar)}" target="_blank" rel="noopener" aria-label="Google Scholar"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg></a>`;
+        socialHtml += '</div>';
+    }
+    return `<div class="attribution-card">
+        ${person.photo ? `<img src="${esc(person.photo)}" alt="${esc(person.name)}" class="attribution-card__photo">` : ''}
+        <div class="attribution-card__info">
+            <span class="attribution-card__name">${esc(person.name)}</span>
+            <div class="attribution-card__meta">
+                ${person.institution ? `<span class="attribution-card__institution">${esc(person.institution)}</span>` : ''}
+                ${socialHtml}
+            </div>
+        </div>
+    </div>`;
+}
+
 function renderAttribution(data) {
     const attr = data.attribution;
     if (!attr) return null;
-    const reviewers = (attr.reviewers && attr.reviewers.length > 0)
-        ? attr.reviewers.join(', ')
-        : 'CAISc 2026 Program Committee';
+
     const div = el('div', 'attribution-block');
-    div.innerHTML = `
-        <div class="attribution-row">
-            <span class="attribution-label">Reviewed by</span>
-            <span class="attribution-names">${esc(reviewers)}</span>
-        </div>`;
+    const people = [];
+    if (attr.authors) attr.authors.forEach(a => people.push(a));
+    if (attr.reviewers) attr.reviewers.forEach(r => people.push(r));
+    if (people.length === 0) people.push('CAISc 2026 Program Committee');
+
+    const cards = people.map(p => renderPersonCard(p)).join('');
+    div.innerHTML = `<div class="attribution-row">
+        <span class="tag tag--domain">Curated and Reviewed By</span>
+        <div class="attribution-people">${cards}</div>
+    </div>`;
     return div;
 }
 
 function renderSubmitCTA() {
     const div = el('div', 'submit-cta');
     div.innerHTML = `
-        <span class="btn btn--disabled">
+        <a href="https://openreview.net/group?id=CAISc/2026" class="btn btn--secondary" target="_blank" rel="noopener">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right:5px">
-                <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
             </svg>
-            Submit (opens April 15, 2026)
-        </span>`;
+            Submit on OpenReview
+        </a>`;
     return div;
 }
 
@@ -528,7 +552,10 @@ function renderApproachSection(data) {
             <div style="margin-top:var(--space-6)">
                 <h4 style="margin-bottom:var(--space-3);font-size:var(--text-base)">AI Agent Instructions</h4>
                 <p style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:var(--space-3);line-height:1.5">
-                    Click the button below to get a complete prompt you can paste into your AI agent. It includes the problem description, constraints, references, and task instructions.
+                    Click the button below to get a complete prompt you can paste into your AI agent. It includes the problem description, constraints, references, and task instructions.${
+                    ['hadamard-maximal-determinant', 'matrix-multiplication-tensor-rank', 'hp-protein-folding'].includes(data.id)
+                    ? ' <strong>Note:</strong> This prompt targets a specific instance. Refer to the leaderboard above to try a different one.'
+                    : ''}
                 </p>
                 <button class="copy-agent-btn">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right:5px">
@@ -564,9 +591,11 @@ function renderReferences(refs) {
 function renderCiteBlock(data) {
     const attr = data.attribution;
     if (!attr) return null;
-    const authors = attr.authors ? attr.authors.join(', ') : 'CAISc 2026';
+    const authors = attr.authors
+        ? attr.authors.map(a => typeof a === 'string' ? a : a.name).join(', ')
+        : 'CAISc 2026';
     const reviewers = (attr.reviewers && attr.reviewers.length > 0)
-        ? attr.reviewers.join(', ')
+        ? attr.reviewers.map(r => typeof r === 'string' ? r : r.name).join(', ')
         : 'CAISc 2026 Program Committee';
     const year = '2026';
     const title = data.title;
@@ -574,7 +603,7 @@ function renderCiteBlock(data) {
     const div = el('div', 'cite-block');
     div.innerHTML = `
         <h3>Cite This Problem</h3>
-        <div class="code-block cite-bibtex">Curated by ${esc(authors)} (${year}). ${esc(title)}. Reviewed by ${esc(reviewers)}. CAISc 2026 Verifiable Problems Track. https://caisc2026.github.io/problems/?problem=${esc(data.id)}</div>`;
+        <div class="code-block cite-bibtex">Curated by ${esc(authors)} (${year}). ${esc(title)}. Reviewed by ${esc(reviewers)}. CAISc 2026 Verifiable Problems Track. https://caisc2026.github.io/verifiable-problems/?problem=${esc(data.id)}</div>`;
     return div;
 }
 
@@ -772,12 +801,12 @@ async function renderDetail(container, meta, showBack) {
     // Submit button at bottom of this section
     const submitBtnWrap = el('div', 'submit-cta-section');
     submitBtnWrap.innerHTML = `
-        <span class="btn btn--disabled">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+        <a href="https://openreview.net/group?id=CAISc/2026" class="btn btn--secondary" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right:5px">
+                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
             </svg>
-            Submit (opens April 15, 2026)
-        </span>`;
+            Submit on OpenReview
+        </a>`;
     submitCard.appendChild(submitBtnWrap);
 
     section.appendChild(submitCard);

@@ -1,12 +1,26 @@
 {
   "id": "hadamard-maximal-determinant",
   "title": "Hadamard Maximal Determinant",
-  "domain": "Math - Linear Algebra",
+  "domain": "Linear Algebra",
   "attribution": {
     "authors": [
-      "Siddhartha Mahajan (Lossfunk)"
+      {
+        "name": "Siddhartha Mahajan",
+        "institution": "Lossfunk",
+        "photo": "../assets/steering_committee_pictures/siddhartha_m_pic.jpeg",
+        "linkedin": "https://www.linkedin.com/in/siddharthamahajan03/",
+        "scholar": "https://scholar.google.com/citations?user=G7iQK4sAAAAJ&hl=en"
+      }
     ],
-    "reviewers": ["Dr. Ankan Pal (BITS Pilani)"]
+    "reviewers": [
+      {
+        "name": "Dr. Ankan Pal",
+        "institution": "BITS Pilani",
+        "photo": "../assets/steering_committee_pictures/Ankan_Pal_BITS_Pilani.png.webp",
+        "linkedin": "https://www.linkedin.com/in/ankanpal21/",
+        "scholar": "https://scholar.google.com/citations?user=Xb7FSjUAAAAJ&hl=en"
+      }
+    ]
   },
   "origin": "In 1893, Jacques Hadamard posed an interesting question: given an n x n matrix whose entries are all +1 or -1, what is the largest possible value of its determinant? It took over a century of effort for finding exact answers for some small matrices (n up to 22). For n = 23 and beyond, much less is known. The best values found so far come from computer searches by Orrick, Solomon, Dowdeswell, and Smith in 2003, using hill-climbing and simulated annealing. Most of those records have stood unchallenged for over 20 years.",
   "instance": "For any value of n from the records table below, construct an n x n matrix (M) consisting of only +1 and -1 such that the absolute value of the determinant (|det(M)|) is strictly larger than the current known maximum value for that particular n. For example, the record for n = 23 is |det(M)| = 2,779,447,296,000,000. To claim a new record, submit a single matrix that beats this value. Each n is an independent challenge and you only need to improve one.",

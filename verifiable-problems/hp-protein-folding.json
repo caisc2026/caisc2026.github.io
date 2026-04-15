@@ -4,7 +4,15 @@
   "domain": "Computational Biology - Protein Structure",
 
   "attribution": {
-    "authors": ["Siddhartha Mahajan (Lossfunk)"],
+    "authors": [
+      {
+        "name": "Siddhartha Mahajan",
+        "institution": "Lossfunk",
+        "photo": "../assets/steering_committee_pictures/siddhartha_m_pic.jpeg",
+        "linkedin": "https://www.linkedin.com/in/siddharthamahajan03/",
+        "scholar": "https://scholar.google.com/citations?user=G7iQK4sAAAAJ&hl=en"
+      }
+    ],
     "reviewers": []
   },
 

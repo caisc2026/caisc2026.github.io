@@ -4,8 +4,24 @@
   "domain": "Math - Discrete Math / Cellular Automata",
 
   "attribution": {
-    "authors": ["Siddhartha Mahajan (Lossfunk)"],
-    "reviewers": ["Dr. Ankan Pal (BITS Pilani)"]
+    "authors": [
+      {
+        "name": "Siddhartha Mahajan",
+        "institution": "Lossfunk",
+        "photo": "../assets/steering_committee_pictures/siddhartha_m_pic.jpeg",
+        "linkedin": "https://www.linkedin.com/in/siddharthamahajan03/",
+        "scholar": "https://scholar.google.com/citations?user=G7iQK4sAAAAJ&hl=en"
+      }
+    ],
+    "reviewers": [
+      {
+        "name": "Dr. Ankan Pal",
+        "institution": "BITS Pilani",
+        "photo": "../assets/steering_committee_pictures/Ankan_Pal_BITS_Pilani.png.webp",
+        "linkedin": "https://www.linkedin.com/in/ankanpal21/",
+        "scholar": "https://scholar.google.com/citations?user=Xb7FSjUAAAAJ&hl=en"
+      }
+    ]
   },
 
   "origin": "The maximum density of an unconstrained still life in Conway's Game of Life approaches 1/2. Requiring connectivity drops this because you cannot freely tile isolated stable pieces. For small n, good solutions are known. For n >= 16, the best-known patterns come from ad hoc searches and may be suboptimal. The density gap between connected and unconstrained still lifes widens as n grows, making larger boxes the more interesting targets. Elkies (1998) proved theoretical density bounds.",

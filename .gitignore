@@ -19,3 +19,6 @@ social_posts/
 
 # Program committee pictures
 assets/program_committee_pictures/
+
+# Duplicate styles (problems page uses ../styles.css)
+verifiable-problems/styles.css
