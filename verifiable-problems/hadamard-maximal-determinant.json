@@ -647,13 +647,13 @@
     ]
   },
   "leaderboard": {
-    "note": "Best known determinants and percentages are taken from the archived Indiana University maxdet tables (Orrick/Solomon), Wayback snapshot: https://web.archive.org/web/20200219170713/http://www.indiana.edu/~maxdet/. Values are shown in prime factorized form for readability; raw determinants are stored in best_abs (not normalized).",
+    "note": "Best known determinants are taken from the archived Indiana University maxdet tables (Orrick/Solomon), Wayback snapshot: https://web.archive.org/web/20200219170713/http://www.indiana.edu/~maxdet/. For rows where the summary table rounds a determinant in scientific notation, the exact value here is taken from the linked dN.html detail page. Values are shown in prime factorized form for readability; raw determinants are stored in best_abs (not normalized). Percentages are recomputed from best_abs using the same theoretical-bound formula as the verifier and rounded to 2 decimals.",
     "rows": [
       {
         "n": 23,
         "mod4": 3,
         "best": "2^22 x 3 x 5^6 x 67 x 211",
-        "pct": 93.0,
+        "pct": 93.20,
         "note": "Smallest open case",
         "best_abs": "2779447296000000"
       },
@@ -661,161 +661,161 @@
         "n": 27,
         "mod4": 3,
         "best": "2^38 x 3^12 x 7 x 13",
-        "pct": 97.0,
+        "pct": 96.73,
         "best_abs": "13293406466724593664"
       },
       {
         "n": 29,
         "mod4": 1,
         "best": "2^34 x 5 x 7^12",
-        "pct": 87.0,
+        "pct": 86.50,
         "best_abs": "1188957517256767569920"
       },
       {
         "n": 31,
         "mod4": 3,
         "best": "2^34 x 7^15",
-        "pct": 96.0,
+        "pct": 95.61,
         "best_abs": "81562485683814255296512"
       },
       {
         "n": 33,
         "mod4": 1,
         "best": "2^74 x 3^2 x 7^2",
-        "pct": 85.0,
+        "pct": 85.47,
         "best_abs": "8330254475782054156959744"
       },
       {
         "n": 34,
         "mod4": 2,
         "best": "2^86",
-        "pct": 97.0,
+        "pct": 96.97,
         "best_abs": "77371252455336267181195264"
       },
       {
         "n": 35,
         "mod4": 3,
         "best": "2^82 x 7 x 19",
-        "pct": 94.0,
+        "pct": 93.79,
         "best_abs": "643148536034982720943685632"
       },
       {
         "n": 39,
         "mod4": 3,
         "best": "2^43 x 3^36 x 5",
-        "pct": 95.0,
+        "pct": 95.27,
         "best_abs": "6601231871033942749550047395840"
       },
       {
         "n": 45,
         "mod4": 1,
         "best": "2^44 x 11^21 x 89",
-        "pct": 86.0,
+        "pct": 85.76,
         "best_abs": "11586605067716613057778332690823512064"
       },
       {
         "n": 47,
         "mod4": 3,
         "best": "2^48 x 3^5 x 5^5 x 11^18",
-        "pct": 92.0,
+        "pct": 92.39,
         "best_abs": "1188404862211877937953272796440166400000"
       },
       {
         "n": 53,
         "mod4": 1,
         "best": "2^52 x 3 x 5 x 7 x 13^25",
-        "pct": 79.0,
+        "pct": 78.82,
         "best_abs": "3336820778920401326051559490739795041651261440"
       },
       {
         "n": 63,
         "mod4": 3,
         "best": "2^62 x 3^30 x 5^30 x 11 x 31",
-        "pct": 97.0,
+        "pct": 96.62,
         "best_abs": "301544826499080300175294464000000000000000000000000000000"
       },
       {
         "n": 67,
         "mod4": 3,
         "best": "2^66 x 17^2 x 89 x 90947^2 x 1158719^2 x 19977803^2",
-        "pct": 86.0,
+        "pct": 86.35,
         "best_abs": "8411937324455659338760898032960608900378909583057868873007104"
       },
       {
         "n": 69,
         "mod4": 1,
         "best": "2^68 x 5 x 17^33 x 31",
-        "pct": 78.0,
+        "pct": 77.90,
         "best_abs": "1841559726932497391068193644892508058646701259493290992111452160"
       },
       {
         "n": 73,
         "mod4": 1,
         "best": "2^108 x 3^71 x 29",
-        "pct": 80.0,
+        "pct": 80.28,
         "best_abs": "70671875153440590676763519679804730029991902842347514447013429116928"
       },
       {
         "n": 75,
         "mod4": 3,
         "best": "2^74 x 3^2 x 11 x 73^2 x 72088729^2 x 14978607312937^2",
-        "pct": 86.0,
+        "pct": 86.13,
         "best_abs": "11619252819560410182605936484428519087965437074741286048929417533587456"
       },
       {
         "n": 77,
         "mod4": 1,
         "best": "2^76 x 3 x 19^37 x 61",
-        "pct": 78.0,
+        "pct": 77.87,
         "best_abs": "2848485384514909987228371683783391053834432432133638731675260616842412032"
       },
       {
         "n": 79,
         "mod4": 3,
         "best": "2^83 x 13^9 x 131^6 x 31513^6",
-        "pct": 86.0,
+        "pct": 85.91,
         "best_abs": "507628598971257089660990430384621524046353727627411360378097638721282113536"
       },
       {
         "n": 83,
         "mod4": 3,
         "best": "2^82 x 109 x 103509337^2 x 2083789309482126707^2",
-        "pct": 86.0,
+        "pct": 85.61,
         "best_abs": "24521826048260297377867765332640025873739507418491742351608637047903397259247616"
       },
       {
         "n": 87,
         "mod4": 3,
         "best": "2^87 x 3 x 19 x 12157846576535073509783078579^2",
-        "pct": 85.0,
+        "pct": 85.27,
         "best_abs": "1303760429540869207566939544397193649049925727672253989237425232133875928248809947136"
       },
       {
         "n": 91,
         "mod4": 3,
         "best": "2^90 x 7 x 17 x 19^10 x 23^10 x 29^4 x 557^10",
-        "pct": 85.0,
+        "pct": 85.01,
         "best_abs": "76068505557917732287517041996385515130005268546818684606149529120089568294989727306612736"
       },
       {
         "n": 93,
         "mod4": 1,
         "best": "2^92 x 23^45 x 239",
-        "pct": 76.0,
+        "pct": 76.40,
         "best_abs": "22434176008231870683469640496687296814730821989127842710796075781171503140772894367067144192"
       },
       {
         "n": 95,
         "mod4": 3,
         "best": "2^96 x 31 x 281^2 x 8273^2 x 1506443^2 x 320651861^2 x 39492207967^2",
-        "pct": 84.0,
+        "pct": 84.47,
         "best_abs": "4830318119060189643218905164420815886509967898620252448376964497243581565617401573808720052224"
       },
       {
         "n": 99,
         "mod4": 3,
         "best": "2^224 x 3^43 x 31^6 x 43",
-        "pct": 85.0,
+        "pct": 84.96,
         "best_abs": "337731524395589406897742022272511334022965678835094355779271284764343191867786606928894941521248256"
       }
     ]
