@@ -647,7 +647,7 @@
     ]
   },
   "leaderboard": {
-    "note": "Best known determinants are taken from the archived Indiana University maxdet tables (Orrick/Solomon), Wayback snapshot: https://web.archive.org/web/20200219170713/http://www.indiana.edu/~maxdet/. For rows where the summary table rounds a determinant in scientific notation, the exact value here is taken from the linked dN.html detail page. Values are shown in prime factorized form for readability; raw determinants are stored in best_abs (not normalized). Percentages are recomputed from best_abs using the same theoretical-bound formula as the verifier and rounded to 2 decimals.",
+    "note": "Best known determinants are taken from the archived Indiana University maxdet tables (Orrick/Solomon), Wayback snapshot: https://web.archive.org/web/20200219170713/http://www.indiana.edu/~maxdet/.",
     "rows": [
       {
         "n": 23,
