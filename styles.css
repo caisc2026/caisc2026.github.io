@@ -431,6 +431,19 @@ main {
     filter: brightness(0) invert(1);
 }
 
+/* Awards Sponsors section (team.html) — left-aligned, larger logos */
+#awards-sponsors .supported-by__logos {
+    justify-content: flex-start;
+    gap: var(--space-12);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-8);
+}
+
+#awards-sponsors .supported-by__logos img {
+    height: clamp(44px, 5.5vw, 64px);
+    max-width: clamp(120px, 16vw, 180px);
+}
+
 /* ===== Buttons ===== */
 .btn {
     display: inline-flex;
